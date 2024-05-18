@@ -1,0 +1,30 @@
+
+
+
+<style>
+    .home-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .home-links a {
+        text-decoration: none;
+        color: white;
+        background-color: #4CAF50;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .home-links a:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="home-links">
+    <a href="{% url 'make_order' %}">Make a New Order</a>
+    <a href="{% url 'order_list' %}">View Orders</a>
+    <a href="{% url 'admin:index' %}">Admin Page</a>
+</div>
+

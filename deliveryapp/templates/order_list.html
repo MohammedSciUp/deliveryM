@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Order List - Delivery Management System{% endblock %}
+
+{% block header %}Order List{% endblock %}
+
+{% block content %}
+<style>
+    .order {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #fff;
+    }
+    .order img {
+        max-width: 100px;
+        display: block;
+        margin-top: 10px;
+    }
+    .order-details {
+        display: flex;
+        flex-direction: column;
+    }
+    .order-details div {
+        margin-bottom: 5px;
+    }
+    .assign-link {
+        margin-top: 10px;
+    }
+</style>
+
+{% for order in orders %}
+    <div class="order">
+        <div class="order-details">
+            <div><strong>Order Number:</strong> {{ order.order_number }}</div>
+            <div><strong>From:</strong> {{ order.from_location }}</div>
+            <div><strong>To:</strong> {{ order.to_location }}</div>
+            <div><strong>Pick Up Location:</strong> {{ order.pick_up_location }}</div>
+            <div><strong>Pick Up Time:</strong> {{ order.pick_up_time }}</div>
+            <div><strong>Pick Up Phone:</strong> {{ order.pick_up_phone_number }}</div>
+            <div><strong>Package Type:</strong> {{ order.package_type }}</div>
+            <div><strong>Pick Up Comment:</strong> {{ order.pick_up_comment }}</div>
+            <div><strong>Delivery Location:</strong> {{ order.delivery_location }}</div>
+            <div><strong>Delivery Time:</strong> {{ order.delivery_time }}</div>
+            <div><strong>Delivery Phone:</strong> {{ order.delivery_phone_number }}</div>
+            <div><strong>Delivery Comment:</strong> {{ order.delivery_comment }}</div>
+            <div><strong>Deliverer:</strong> {{ order.deliverer }}</div>
+        </div>
+        {% if order.pick_up_pic %}
+            <div>
+                <strong>Pick Up Picture:</strong>
+                <img src="{{ order.pick_up_pic.url }}" alt="Pick Up Picture">
+            </div>
+        {% endif %}
+        {% if order.delivery_pic %}
+            <div>
+                <strong>Delivery Picture:</strong>
+                <img src="{{ order.delivery_pic.url }}" alt="Delivery Picture">
+            </div>
+        {% endif %}
+        <div class="assign-link">
+            <a href="{% url 'assign_deliverer' order.id %}">Assign Deliverer</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
